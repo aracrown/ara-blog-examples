@@ -5,6 +5,12 @@ import javax.enterprise.inject.Produces;
 
 import org.aeonbits.owner.ConfigFactory;
 
+/**
+ * Application scope based configuration file producer.
+ * 
+ * @author vicento.ramos
+ *
+ */
 @ApplicationScoped
 public class ApplicationConfigProducer {
 	@Produces
