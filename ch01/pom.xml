@@ -24,4 +24,12 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<repository>
+			<id>ara-dev</id>
+			<name>ara dev repository</name>
+			<url>http://www.aracrown.com/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+
 </project>
