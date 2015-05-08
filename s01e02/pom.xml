@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.aracrown.blog</groupId>
-	<artifactId>ch02</artifactId>
+	<artifactId>s01e02</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>ch02</name>
+	<name>s01e02</name>
 	<description>Web application environment configuration using maven profiles</description>
 
 	<!-- 1. Default filter name -->
