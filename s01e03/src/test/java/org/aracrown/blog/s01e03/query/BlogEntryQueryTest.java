@@ -12,9 +12,12 @@ import javax.persistence.criteria.Root;
 
 import org.aracrown.blog.s01e03.model.BlogEntry;
 import org.aracrown.blog.s01e03.model.BlogEntry_;
+import org.aracrown.blog.s01e03.model.QBlogEntry;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.mysema.query.jpa.impl.JPAQuery;
 
 public class BlogEntryQueryTest {
 	protected static EntityManager em;
@@ -28,8 +31,12 @@ public class BlogEntryQueryTest {
 
 	@Test
 	public void testQueryDSLDefault() {
+		delete();
+		
 		Assert.assertTrue(new BlogEntryQueryImpl(getEntityManager()).title("test").list().isEmpty());
 	}
+
+	
 
 	@Test
 	public void testQueryDSLExists() {
@@ -38,15 +45,23 @@ public class BlogEntryQueryTest {
 		Assert.assertFalse(new BlogEntryQueryImpl(getEntityManager()).title("test").list().isEmpty());
 	}
 
-	private void createBlogEntry() {
-		em.getTransaction().begin();
-		BlogEntry be = new BlogEntry();
-		be.setTitle("test");
-		be.setAuthor("author");
-		em.persist(be);
-		em.getTransaction().commit();
+	@Test
+	public void testQueryDSLPlain() {
+		QBlogEntry qb = QBlogEntry.blogEntry;
+		
+		Assert.assertFalse(new JPAQuery(getEntityManager()).from(qb).where(qb.title.eq("test")).fetch().exists());
+	}
+	
+	@Test
+	public void testQueryDSLPlainExists() {
+		createBlogEntry();
+
+		QBlogEntry qb = QBlogEntry.blogEntry;
+		
+		Assert.assertTrue(new JPAQuery(getEntityManager()).from(qb).where(qb.title.eq("test")).fetch().exists());
 	}
 
+	
 	@Test
 	public void testCriteriaDefault() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -74,6 +89,22 @@ public class BlogEntryQueryTest {
 		Assert.assertFalse(allItems.isEmpty());
 	}
 
+	private void createBlogEntry() {
+		em.getTransaction().begin();
+		BlogEntry be = new BlogEntry();
+		be.setTitle("test");
+		be.setAuthor("author");
+		em.persist(be);
+		em.getTransaction().commit();
+	}
+
+	
+	private void delete() {
+		getEntityManager().getTransaction().begin();
+		getEntityManager().createQuery("delete from BlogEntry").executeUpdate();
+		getEntityManager().getTransaction().commit();
+	}
+	
 	private EntityManager getEntityManager() {
 		return em;
 	}
