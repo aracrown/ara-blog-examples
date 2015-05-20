@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.aracrown.blog</groupId>
+	<artifactId>s01e03</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>s01e03</name>
+	<description>Writing type-safe queries with QueryDSL</description>
+
+	<properties>
+		<ara-commons.version>1.0.5-SNAPSHOT</ara-commons.version>
+	</properties>
+	<repositories>
+		<repository>
+			<id>ara-dev</id>
+			<name>ara dev repository</name>
+			<url>http://www.aracrown.com/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<!-- Provided utilities -->
+		<dependency>
+			<groupId>org.aracrown</groupId>
+			<artifactId>ara-dependencies-provided</artifactId>
+			<version>${ara-commons.version}</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test utilities -->
+		<dependency>
+			<groupId>org.aracrown</groupId>
+			<artifactId>ara-dependencies-test</artifactId>
+			<version>${ara-commons.version}</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>3.6.3</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>2.0.5</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<processors>
+								<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+							</processors>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-jpamodelgen</artifactId>
+						<version>4.3.10.Final</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<version>1.1.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/generated-sources/java</outputDirectory>
+							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
