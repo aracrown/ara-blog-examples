@@ -17,6 +17,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.mysema.query.jpa.impl.JPADeleteClause;
 import com.mysema.query.jpa.impl.JPAQuery;
 
 public class BlogEntryQueryTest {
@@ -101,7 +102,7 @@ public class BlogEntryQueryTest {
 	
 	private void delete() {
 		getEntityManager().getTransaction().begin();
-		getEntityManager().createQuery("delete from BlogEntry").executeUpdate();
+		new JPADeleteClause(getEntityManager(), QBlogEntry.blogEntry).execute();
 		getEntityManager().getTransaction().commit();
 	}
 	
