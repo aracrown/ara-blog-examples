@@ -1,5 +1,9 @@
-package org.wildfly.swarm.examples.jpa;
+package org.aracrown.blog.s01e04;
 
+import org.aracrown.blog.s01e04.dao.BlogEntryDao;
+import org.aracrown.blog.s01e04.model.BlogEntry;
+import org.aracrown.blog.s01e04.query.BlogEntryQueryImpl;
+import org.aracrown.blog.s01e04.resources.BlogEntriesResource;
 import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.wildfly.swarm.container.Container;
 import org.wildfly.swarm.datasources.Datasource;
@@ -7,9 +11,6 @@ import org.wildfly.swarm.datasources.DatasourceDeployment;
 import org.wildfly.swarm.datasources.DriverDeployment;
 import org.wildfly.swarm.jaxrs.JAXRSDeployment;
 
-/**
- * @author Ken Finnigan
- */
 public class Main {
 	public static void main(String[] args) throws Exception {
 		Container container = new Container();
@@ -26,12 +27,13 @@ public class Main {
 		container.deploy(dsDeployment);
 
 		JAXRSDeployment deployment = new JAXRSDeployment(container);
-		deployment.getArchive().addPackages(true, Employee.class.getPackage());
+		deployment.getArchive().addClasses(BlogEntryDao.class, BlogEntryQueryImpl.class);
+		deployment.getArchive().addPackage(BlogEntry.class.getPackage());
+		deployment.getArchive().addPackage(BlogEntriesResource.class.getPackage());
 		deployment.getArchive().addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", Main.class.getClassLoader()),
 				"classes/META-INF/persistence.xml");
 		deployment.getArchive().addAsWebInfResource(new ClassLoaderAsset("META-INF/load.sql", Main.class.getClassLoader()),
 				"classes/META-INF/load.sql");
-		//deployment.addResource(EmployeeResource.class);
 
 		container.deploy(deployment);
 	}
