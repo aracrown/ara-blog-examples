@@ -34,6 +34,8 @@ public class Main {
 				"classes/META-INF/persistence.xml");
 		deployment.getArchive().addAsWebInfResource(new ClassLoaderAsset("META-INF/load.sql", Main.class.getClassLoader()),
 				"classes/META-INF/load.sql");
+		deployment.getArchive().addAsWebInfResource(new ClassLoaderAsset("META-INF/beans.xml", Main.class.getClassLoader()),
+				"classes/META-INF/beans.xml");
 
 		container.deploy(deployment);
 	}

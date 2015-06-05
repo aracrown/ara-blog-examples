@@ -13,8 +13,12 @@ import org.aracrown.blog.s01e04.query.BlogEntryQueryImpl;
 public class BlogEntryDao {
 	@PersistenceContext
 	private EntityManager em;
-	
-	public List<BlogEntry> getAll() {
-		return new BlogEntryQueryImpl(em).list();
+
+	public List<BlogEntry> page(Long first, Long pageSize) {
+		return new BlogEntryQueryImpl(em).page(first, pageSize).list();
+	}
+
+	public Long count() {
+		return new BlogEntryQueryImpl(em).count();
 	}
 }
