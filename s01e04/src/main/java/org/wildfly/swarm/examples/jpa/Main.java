@@ -26,12 +26,12 @@ public class Main {
 		container.deploy(dsDeployment);
 
 		JAXRSDeployment deployment = new JAXRSDeployment(container);
-		deployment.getArchive().addClasses(Employee.class);
+		deployment.getArchive().addPackages(true, Employee.class.getPackage());
 		deployment.getArchive().addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", Main.class.getClassLoader()),
 				"classes/META-INF/persistence.xml");
 		deployment.getArchive().addAsWebInfResource(new ClassLoaderAsset("META-INF/load.sql", Main.class.getClassLoader()),
 				"classes/META-INF/load.sql");
-		deployment.addResource(EmployeeResource.class);
+		//deployment.addResource(EmployeeResource.class);
 
 		container.deploy(deployment);
 	}

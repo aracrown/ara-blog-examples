@@ -19,7 +19,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<version.wildfly-swarm>1.0.0.Alpha2-SNAPSHOT</version.wildfly-swarm>
+		<version.wildfly-swarm>1.0.0.Alpha3-SNAPSHOT</version.wildfly-swarm>
 		<maven.min.version>3.2.1</maven.min.version>
 	</properties>
 
@@ -31,6 +31,8 @@
 				<version>${version.wildfly-swarm}</version>
 				<configuration>
 					<mainClass>org.wildfly.swarm.examples.jpa.Main</mainClass>
+					<portOffset>0</portOffset>
+					<bindAddress>0.0.0.0</bindAddress>
 				</configuration>
 				<executions>
 					<execution>
@@ -63,13 +65,13 @@
 	</build>
 
 	<dependencies>
-		
+
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-apt</artifactId>
 			<version>4.0.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
