@@ -56,6 +56,8 @@
 				</configuration>
 			</plugin>
 
+
+
 			<!-- mapscruct -->
 			<plugin>
 				<groupId>org.bsc.maven</groupId>
@@ -67,6 +69,7 @@
 					</defaultOutputDirectory>
 					<processors>
 						<processor>org.mapstruct.ap.MappingProcessor</processor>
+						<processor>fr.xebia.extras.selma.codegen.MapperProcessor</processor>
 					</processors>
 				</configuration>
 				<executions>
@@ -83,6 +86,11 @@
 						<groupId>org.mapstruct</groupId>
 						<artifactId>mapstruct-processor</artifactId>
 						<version>${org.mapstruct.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>fr.xebia.extras</groupId>
+						<artifactId>selma-processor</artifactId>
+						<version>0.12</version>
 					</dependency>
 				</dependencies>
 			</plugin>

@@ -7,9 +7,10 @@ import fr.xebia.extras.selma.Field;
 import fr.xebia.extras.selma.IgnoreMissing;
 import fr.xebia.extras.selma.Mapper;
 
-@Mapper(withCustomFields = { @Field({ "enabled", "properties.enabled" }) }, withIgnoreMissing = IgnoreMissing.ALL)
+@Mapper(withCustomFields = { @Field({ "enabled", "properties.enabled" }), @Field({ "commentsEnabled", "properties.commentsEnabled" }),
+		@Field({ "author.name", "authorName" }), @Field({ "author.signature", "authorSignature" }) }, withIgnoreMissing = IgnoreMissing.ALL)
 public interface SelmaBlogEntryMapper {
-	BlogEntryResource asBlogEntryResource(BlogEntry entry);
+	BlogEntryResource toResourceBlogEntry(BlogEntry entry);
 
-	BlogEntry asBlogEntry(BlogEntryResource entry);
+	BlogEntry toJpaBlogEntry(BlogEntryResource entry);
 }
