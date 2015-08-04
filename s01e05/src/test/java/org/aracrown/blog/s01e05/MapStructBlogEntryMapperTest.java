@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
 
-import fr.xebia.extras.selma.Selma;
-
 public class MapStructBlogEntryMapperTest extends AbstractTest{
 
 	@Test
