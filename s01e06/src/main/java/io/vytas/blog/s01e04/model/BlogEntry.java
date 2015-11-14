@@ -1,4 +1,4 @@
-package org.aracrown.blog.s01e04.model;
+package io.vytas.blog.s01e04.model;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -20,11 +20,17 @@ public class BlogEntry {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long id;
 
+	@Column(name = "PATH_")
+	private String path;
+	
 	@Column(name = "TITLE_")
 	private String title;
 
 	@Column(name = "AUTHOR_")
 	private String author;
+	
+	@Column(name = "CONTENT_")
+	private String content;
 
 	/**
 	 * @return the id
@@ -67,6 +73,34 @@ public class BlogEntry {
 	 */
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	/**
+	 * @return the path
+	 */
+	public String getPath() {
+		return path;
+	}
+
+	/**
+	 * @param path the path to set
+	 */
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	/**
+	 * @return the content
+	 */
+	public String getContent() {
+		return content;
+	}
+
+	/**
+	 * @param content the content to set
+	 */
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }
