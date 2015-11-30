@@ -10,7 +10,7 @@
 
 	<properties>
 		<ara-commons.version>1.0.7-SNAPSHOT</ara-commons.version>
-		<wildfly-swarm.version>1.0.0.Alpha3-SNAPSHOT</wildfly-swarm.version>
+		<wildfly-swarm.version>1.0.0.Alpha5</wildfly-swarm.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -47,15 +47,22 @@
 		</dependency>
 		<dependency>
 			<groupId>org.wildfly.swarm</groupId>
-			<artifactId>wildfly-swarm-weld-jaxrs</artifactId>
+			<artifactId>wildfly-swarm-weld</artifactId>
 			<version>${wildfly-swarm.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>wildfly-swarm-jsf</artifactId>
+			<version>${wildfly-swarm.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.187</version>
 		</dependency>
-		
+
 		<!-- for JSF 2.x -->
 		<dependency>
 			<groupId>org.ocpsoft.rewrite</groupId>
@@ -67,8 +74,8 @@
 			<artifactId>rewrite-config-prettyfaces</artifactId>
 			<version>2.0.12.Final</version>
 		</dependency>
-		
-		
+
+
 	</dependencies>
 
 	<build>
@@ -102,7 +109,7 @@
 				</executions>
 			</plugin>
 
-			
+
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -119,9 +126,6 @@
 				<groupId>org.wildfly.swarm</groupId>
 				<artifactId>wildfly-swarm-plugin</artifactId>
 				<version>${wildfly-swarm.version}</version>
-				<configuration>
-					<mainClass>org.aracrown.blog.s01e04.Main</mainClass>
-				</configuration>
 				<executions>
 					<execution>
 						<goals>
