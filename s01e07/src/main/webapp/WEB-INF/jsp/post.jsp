@@ -6,7 +6,7 @@
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<c:if test="${blogEntryBean.blogEntry.imagePresent}">
 				<a href="#">
-					<img src="/s01e07/blog/posts/image/${blogEntryBean.blogEntry.path}.img" class="img-responsive" />
+					<img src="/s01e07/blog/resources/image/${blogEntryBean.blogEntry.path}.img" class="img-responsive" />
 				</a>
 			</c:if>
 			<p>${blogEntryBean.blogEntry.content}</p>

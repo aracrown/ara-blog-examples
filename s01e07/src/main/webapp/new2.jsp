@@ -21,7 +21,7 @@
 		<div class="row control-group">
 			<div class="form-group col-xs-12 floating-label-form-group controls">
 				<label>Image</label>
-				<input type="file" name="uploadfile">
+				<input type="file" name="uploadfile" accept="image/*">
 				<p class="help-block text-danger"></p>
 			</div>
 		</div>

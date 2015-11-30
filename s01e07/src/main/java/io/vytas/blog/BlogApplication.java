@@ -23,6 +23,7 @@ public class BlogApplication extends javax.ws.rs.core.Application {
 
 		// Add resources.
 		resources.add(BlogController.class);
+		resources.add(ImageResource.class);
 
 		// Add additional features such as support for Multipart.
 		resources.add(MultiPartFeature.class);

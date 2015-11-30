@@ -12,14 +12,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
-import com.google.common.base.Strings;
 
 import io.vytas.blog.dao.BlogEntryBuilder;
 import io.vytas.blog.dao.BlogEntryDao;
@@ -39,7 +37,7 @@ import io.vytas.blog.mvc.request.SimpleEntryRequest;
 @Path("/posts/")
 public class BlogController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BlogController.class);
-	
+
 	@Inject
 	Models models;
 
@@ -85,7 +83,7 @@ public class BlogController {
 		BlogEntry be = new BlogEntryBuilder().defaultAuthor().title(form.getTitle()).content(form.getContent()).randomPath().build();
 
 		blogEntryDao.save(be);
-		
+
 	}
 
 	@POST
@@ -106,16 +104,4 @@ public class BlogController {
 
 		return "redirect:/posts/";
 	}
-
-	@GET
-	@Path("/image/{img}.img")
-	@Produces({ "image/*" })
-	public String getImage(@PathParam("img") String imagePath) {
-		Preconditions.checkArgument(!Strings.isNullOrEmpty(imagePath), "Blog post path is empty. Image cannot be retrieved.");
-		byte[] img = blogEntryDao.getImage(imagePath);
-
-		models.put("image", img);
-		return "/producer.img";
-	}
-
 }
