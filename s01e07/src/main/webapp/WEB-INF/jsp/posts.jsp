@@ -1,22 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Getting started</title>
-  </head>
-  <body>
-    <h1>${message}</h1>
-    
-    <div>
-	<c:forEach var="post" items="${blogEntryListBean.blogEntries}">
-      <p><a href="/s01e07/blog/posts/${post.path}/">${post.title}</a></p>
-    </c:forEach>
-  </div>
-  
-  <p><a href="/s01e07/new.jsp">New</a></p>
-  
-  <p><a href="/s01e07/new2.jsp">New with file</a></p>
-  </body>
-</html>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<t:template>
+	<div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            	<c:forEach var="post" items="${blogEntryListBean.blogEntries}">
+       
+      				<div class="post-preview">
+	                    <a href="/s01e07/blog/posts/${post.path}/">
+	                        <h2 class="post-title">
+	                            ${post.title}
+	                        </h2>
+	                       
+	                    </a>
+	                    <p class="post-meta">Posted by <a href="#">${post.author}</a> on September 18, 2014</p>
+	                </div>
+	                <hr>
+    			</c:forEach>
+            </div>
+        </div>
+</t:template>

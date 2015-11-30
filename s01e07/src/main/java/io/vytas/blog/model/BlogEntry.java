@@ -36,6 +36,7 @@ public class BlogEntry {
 	@Column(name = "AUTHOR_")
 	private String author;
 
+	@Lob
 	@Column(name = "CONTENT_")
 	private String content;
 
