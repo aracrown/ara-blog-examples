@@ -8,6 +8,7 @@ import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 import io.vytas.blog.mvc.controllers.BlogController;
+import io.vytas.blog.resources.ImageResource;
 
 /**
  * Sample blog application.

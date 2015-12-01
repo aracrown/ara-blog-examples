@@ -1,4 +1,4 @@
-package io.vytas.blog;
+package io.vytas.blog.resources;
 
 import java.io.IOException;
 import java.io.OutputStream;
